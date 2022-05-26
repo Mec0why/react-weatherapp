@@ -11,6 +11,7 @@ const PickCity = ({ action }) => {
     e.preventDefault();
     action({ city });
     console.log('I happened');
+    setCity('');
   };
 
   return (
