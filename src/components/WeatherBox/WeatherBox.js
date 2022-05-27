@@ -4,7 +4,7 @@ import Loader from '../Loader/Loader';
 import { useState, useCallback } from 'react';
 
 const WeatherBox = (props) => {
-  const [weatherData, setWeatherData] = useState('');
+  const [weather, setWeather] = useState('');
 
   const handleCityChange = useCallback((city) => {
     console.log(city);
@@ -21,14 +21,14 @@ const WeatherBox = (props) => {
         };
         console.log(weatherData);
 
-        setWeatherData(weatherData);
+        setWeather(weatherData);
       });
   }, []);
 
   return (
     <section>
       <PickCity action={handleCityChange} />
-      <WeatherSummary weatherData={weatherData} />
+      <WeatherSummary weatherData={weather} />
       <Loader />
     </section>
   );
