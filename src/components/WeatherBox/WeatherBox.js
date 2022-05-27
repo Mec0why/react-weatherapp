@@ -1,9 +1,11 @@
 import PickCity from '../PickCity/PickCity';
 import WeatherSummary from '../WeatherSummary/WeatherSummary';
 import Loader from '../Loader/Loader';
-import { useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 const WeatherBox = (props) => {
+  const [weatherData, setWeatherData] = useState('');
+
   const handleCityChange = useCallback((city) => {
     console.log(city);
     fetch(
@@ -18,13 +20,15 @@ const WeatherBox = (props) => {
           description: data.weather[0].main,
         };
         console.log(weatherData);
+
+        setWeatherData(weatherData);
       });
   }, []);
 
   return (
     <section>
       <PickCity action={handleCityChange} />
-      <WeatherSummary />
+      <WeatherSummary weatherData={weatherData} />
       <Loader />
     </section>
   );
